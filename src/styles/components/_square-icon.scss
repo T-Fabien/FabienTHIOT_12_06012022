@@ -1,0 +1,23 @@
+.square-icon {
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  color: red;
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+  justify-content: center;
+  margin: 10px 0;
+  width: 64px;
+}
+
+// Responsive
+
+@media screen and (min-width: 1000px) and (max-width: 1500px){
+  .square-icon {
+    height: 50px;
+    margin: 10px 0;
+    width: 50px;
+  }
+}
+

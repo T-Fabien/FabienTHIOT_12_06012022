@@ -1,0 +1,22 @@
+/* Utils */
+@import "./utils/variables";
+
+/* Base */
+@import "./base/reset_css";
+@import "./base/typography";
+
+/* Components */
+@import "./components/square-icon";
+@import "./components/header";
+@import "./components/nutrients";
+@import "./components/weight";
+@import "./components/objectives";
+@import "./components/radar";
+@import "./components/kpi";
+
+/* Layout */
+@import "./layout/navbar";
+
+/* Pages */
+@import "./pages/homepage";
+

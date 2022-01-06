@@ -1,0 +1,92 @@
+.nutrients{
+    background-color: #FBFBFB;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    width: 270px;
+
+    &__logo{
+        height: 84px;
+        margin: 20px;
+    }
+
+    &__number{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 20px 0;
+
+        & h2 {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        & p{
+            color: #74798C;
+            font-size: 14px;
+            padding-top: 15px;
+        }
+    }
+}
+
+
+
+.nutrients__{
+    &Calories{
+        background-color: lighten(#FF0000,40%);
+    }
+    &Proteines{
+        background-color: lighten(#4AB8FF,32%);
+    }
+    &Glucides{
+        background-color: lighten(#FDCC0C,35%);
+    }
+    &Lipides{
+        background-color: lighten(#FD5181,28%);
+    }
+}
+
+
+@media screen and (min-width: 1000px) and (max-width: 1250px){
+    .nutrients{
+        width: 220px;
+        &__logo{
+            height: 70px;
+            margin: 0px 20px;
+        }
+    
+        &__number{
+            margin: 0;
+            & h2 {
+                font-size: 20px;
+                font-weight: 900;
+            }
+    
+            & p{
+                padding-top: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1250px) and (max-width: 1500px){
+    .nutrients{
+        width: 220px;
+        &__logo{
+            height: 70px;
+            margin: 20px 20px;
+        }
+    
+        &__number{
+            margin: 0;
+            & h2 {
+                font-size: 20px;
+                font-weight: 900;
+            }
+    
+            & p{
+                padding-top: 10px;
+            }
+        }
+    }
+}

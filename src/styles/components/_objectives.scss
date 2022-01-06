@@ -1,0 +1,125 @@
+.objectifs-graph {
+  height: 300px;
+  h2 {
+    color: white;
+    font-size: 15px;
+    left: 20px;
+    position: relative;
+    top: 40px;
+    z-index: 1;
+  }
+  .recharts-wrapper {
+    background-color: #ff0000;
+    border-radius: 20px;
+    color: white;
+    height: calc(100% - 50px) !important;
+    padding: 40px 10px 10px 10px;
+    top: -15px;
+    width: calc(100% - 20px) !important;
+    .recharts-surface {
+      top: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  //Axis
+  .recharts-cartesian-axis {
+    padding: 0 20px;
+  }
+
+  // Axis Color
+  .recharts-surface .recharts-cartesian-axis {
+    fill: #fff !important;
+  }
+
+  // More Info
+  .custom-tooltip {
+    background-color: white;
+    color: black;
+    display: flex;
+    font-size: 10px;
+    font-weight: 900;
+    overflow: hidden;
+    padding: 10px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1250px) {
+  // Objectif Graph
+  .objectifs-graph {
+    height: 170px;
+    // Title
+    h2 {
+      left: 15px;
+      position: relative;
+      top: 20px;
+      font-size: 12px;
+    }
+    // Graph
+    .recharts-wrapper {
+      padding: 20px 5px 0px 5px;
+      margin: 0 !important;
+      top: -12px;
+      height: 150px !important;
+      width: calc(100% - 10px) !important;
+      .recharts-surface {
+        top: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1250px) and (max-width: 1500px) {
+  // Objectif Graph
+  .objectifs-graph {
+    height: 220px;
+    // Title
+    h2 {
+      left: 15px;
+      top: 20px;
+      font-size: 15px;
+    }
+    // Graph
+    .recharts-wrapper {
+      padding: 20px 5px 0px 5px;
+      margin: 0 !important;
+      top: -12px;
+      height: calc(100% - 20px) !important;
+      width: calc(100% - 10px) !important;
+      .recharts-surface {
+        top: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1900px) {
+  // Objectif Graph
+  .objectifs-graph {
+    height: 270px;
+    // Title
+    h2 {
+      left: 15px;
+      top: 20px;
+      font-size: 15px;
+    }
+    // Graph
+    .recharts-wrapper {
+      padding: 20px 5px 0px 5px;
+      margin: 0 !important;
+      top: -12px;
+      height: calc(100% - 20px) !important;
+      width: calc(100% - 10px) !important;
+      .recharts-surface {
+        top: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+}
