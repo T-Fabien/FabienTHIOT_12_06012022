@@ -10,7 +10,7 @@ class Navbar extends React.Component {
         <img src={navbar_icon} alt="" />
         <div className="nav-t">
           <nav>
-            <NavLink to="user/12" className="link" onPress={() => this.props.navigation.push('Home')}>
+            <NavLink to="user/12" className="link">
               Accueil
             </NavLink>
             <NavLink to={this.props.pathname} className="link">

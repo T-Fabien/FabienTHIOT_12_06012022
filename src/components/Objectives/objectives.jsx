@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, Tooltip} from "recharts";
 
 
 // French Days
-const daysOfWeek = ['L' ,'M', 'M', 'J' , 'V', 'S','D'];
+const daysOfTheWeek = ['L' ,'M', 'M', 'J' , 'V', 'S','D'];
 
 // Custom Hover Graph
 const CustomTooltip = ({ active, payload }) => {
@@ -29,7 +29,7 @@ class Objectives extends React.Component {
           data={this.props.sessiondata.data.sessions}
           margin={{ top: 5, right: 25, left: 15, bottom: 5 }}
         >
-          <XAxis dataKey="day" type="category" stroke="#fff" axisLine={false} tickLine={false} tickFormatter={day => daysOfWeek[day-1]} />
+          <XAxis dataKey="day" type="category" stroke="#fff" axisLine={false} tickLine={false} tickFormatter={day => daysOfTheWeek[day-1]} />
           <Tooltip content={<CustomTooltip />}/>
           <Line type="monotone" dataKey="sessionLength" stroke="#fff" strokeWidth={2} activeDot={{ r: 2 }} />
         </LineChart>

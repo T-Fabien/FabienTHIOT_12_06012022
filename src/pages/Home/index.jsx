@@ -34,8 +34,7 @@ class Home extends React.Component {
           // Global Info
           getInfosUser(id).then((dataInfo) => {
             this.setState({userInformation: dataInfo});
-          }
-          ),
+          }),
           // Activity Info
           getUserActivity(id).then((dataActivity) => {
             this.setState({userActivity : dataActivity});
@@ -44,16 +43,17 @@ class Home extends React.Component {
           getUserAverage(id).then((dataAverage) => {
             this.setState({userAvarage : dataAverage});
           }),
+          // Performance Info
           getUserPerformance(id).then((dataPeroformance) => {
             this.setState({userPerformance : dataPeroformance});
           }),
           // getuser
         ])
-        // Set the Loading at true
+        // Set the Loading to true
           .then((resp) => {
             this.setState({isDataLoading : true});
           })
-          // Set Error at true if error
+          // Set the error to true if there is an error
           .catch((err) => {
             this.setState({isError : true});
             console.log(
@@ -63,6 +63,7 @@ class Home extends React.Component {
   }
 
   render() {
+    // Put "loading" if there is an error or a null
     if (this.state.isError || this.state.userInformation == null || this.state.userActivity == null || this.state.userAvarage == null || this.state.userPerformance == null ) {
       return <div className="main"> Loading ...</div>;
     } else {
