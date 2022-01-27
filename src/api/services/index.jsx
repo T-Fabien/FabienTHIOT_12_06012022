@@ -1,4 +1,9 @@
-// Get User Global Infos
+/**
+ * This function will return a json with the global data
+ * from a user with a id
+ * @param {int} id - The id of the user
+ * @returns {Object} json - The Json data from the user
+ */
 export const getInfosUser = async (id) => {
   // Request
   return fetch(`http://localhost:3000/user/${id}`).then((response) => {
@@ -17,7 +22,12 @@ export const getInfosUser = async (id) => {
   });
 };
 
-// Get User Activity Infos
+/**
+ * This function will return a json with the activity data
+ * from a user with a id
+ * @param {int} id - The id of the user
+ * @returns {Object} json - The Json activity data from the user
+ */
 export const getUserActivity = async (id) => {
   // Request
   return fetch(`http://localhost:3000/user/${id}/activity`).then((res) => {
@@ -33,7 +43,12 @@ export const getUserActivity = async (id) => {
   });
 };
 
-// Get User Average session
+/**
+ * This function will return a json with all activity session
+ * from a user with a id
+ * @param {int} id - The id of the user
+ * @returns {Object} json - The Json activity session from the user
+ */
 export const getUserAverage = async (id) => {
   // Request
   return fetch(`http://localhost:3000/user/${id}/average-sessions`).then(
@@ -51,7 +66,13 @@ export const getUserAverage = async (id) => {
   );
 };
 
-// Get User Activity Infos
+/**
+ * This function will return a json with all the performance
+ * from a user with a id
+ * @param {int} id - The id of the user
+ * @returns {Object} The Json performance from the user
+ */
+
 export const getUserPerformance = async (id) => {
   return fetch(`http://localhost:3000/user/${id}/performance`).then((res) => {
     // If Server Error
