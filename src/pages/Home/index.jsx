@@ -4,19 +4,27 @@ import {
   getUserActivity,
   getUserAverage,
   getUserPerformance,
+  testAPI,
 } from "../../api/services";
 
 import Header from "../../components/Header/header";
 import Weight from "../../components/Weight/weight";
 import Objectives from "../../components/Objectives/objectives";
-import Radar_ from "../../components/Radar/radar";
+import Radar from "../../components/Radar/radar";
 import Nutrients from "../../components/Nutrients/nutrients";
 import KPI from "../../components/KPI/kpi";
+import {
+  getInfosUserMocked,
+  getUserActivityMocked,
+  getUserAverageMocked,
+  getUserPerformanceMocked,
+} from "../../api/mocks/services/services";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAPIOnline: false,
       userInformation: null,
       userActivity: null,
       userAvarage: null,
@@ -28,55 +36,109 @@ class Home extends React.Component {
 
   // Get User Data
   componentDidMount() {
-    const id = window.location.pathname.substring(6,8);
+    const id = window.location.pathname.substring(6, 8);
+
+    testAPI(id).then((ApiOnline) => {
+      this.setState({ isAPIOnline: ApiOnline });
+
+      if (this.state.isAPIOnline == true) {
+        console.log("API ONLINE");
         // Try to get all info
         Promise.all([
           // Global Info
           getInfosUser(id).then((dataInfo) => {
-            this.setState({userInformation: dataInfo});
+            this.setState({ userInformation: dataInfo });
           }),
           // Activity Info
           getUserActivity(id).then((dataActivity) => {
-            this.setState({userActivity : dataActivity});
+            this.setState({ userActivity: dataActivity });
           }),
           // Session Info
           getUserAverage(id).then((dataAverage) => {
-            this.setState({userAvarage : dataAverage});
+            this.setState({ userAvarage: dataAverage });
           }),
           // Performance Info
           getUserPerformance(id).then((dataPeroformance) => {
-            this.setState({userPerformance : dataPeroformance});
+            this.setState({ userPerformance: dataPeroformance });
           }),
           // getuser
         ])
-        // Set the Loading to true
+          // Set the Loading to true
           .then((resp) => {
-            this.setState({isDataLoading : true});
+            this.setState({ isDataLoading: true });
           })
           // Set the error to true if there is an error
           .catch((err) => {
-            this.setState({isError : true});
+            this.setState({ isError: true });
             console.log(
               "Serveur en maintenance, Merci de ressayer ulterieurement :" + err
             );
           });
+      } else {
+        console.log("Le Serveur est indisponible, les données sont locales");
+        Promise.all([
+          // Global Info
+          this.setState({ userInformation: getInfosUserMocked(id) }),
+          // Activity Info
+          this.setState({ userActivity: getUserActivityMocked(id) }),
+          // Session Info
+          this.setState({ userAvarage: getUserAverageMocked(id) }),
+          // Performance Info
+          this.setState({ userPerformance: getUserPerformanceMocked(id) }),
+          // getuser
+        ])
+          // Set the Loading to true
+          .then((resp) => {
+            this.setState({ isDataLoading: true });
+            this.setState({ isError: false });
+          })
+          // Set the error to true if there is an error
+          .catch((err) => {
+            this.setState({ isDataLoading: false });
+            console.log(
+              "Serveur en maintenance, Merci de ressayer ulterieurement :" + err
+            );
+          });
+      }
+    });
   }
 
   render() {
+    const id = window.location.pathname.substring(6, 8);
+    if (this.state.isError === true) {
+      try {
+        this.MockedData(id);
+      } catch (error) {
+        console.log("Erreur au chargement des données locales :" + error);
+        return <div className="main"> Loading ...</div>;
+      }
+    }
+
     // Put "loading" if there is an error or a null
-    if (this.state.isError || this.state.userInformation == null || this.state.userActivity == null || this.state.userAvarage == null || this.state.userPerformance == null ) {
+    if (
+      this.state.isDataLoading == false ||
+      this.state.userInformation == null ||
+      this.state.userActivity == null ||
+      this.state.userAvarage == null ||
+      this.state.userPerformance == null
+    ) {
       return <div className="main"> Loading ...</div>;
     } else {
       return (
         <div className="main">
-          <Header firstname={this.state.userInformation.data.userInfos.firstName} />
+          <Header
+            firstname={this.state.userInformation.data.userInfos.firstName}
+          />
           <div className="summary">
             <section className="summary__left">
-              <Weight weightdata={this.state.userActivity}/>
+              <Weight weightdata={this.state.userActivity} />
               <div className="graph">
-                <Objectives sessiondata={this.state.userAvarage}/>
-                <Radar_ sessiondata={this.state.userPerformance}/>
-                <KPI scoredata={this.state.userInformation.data.score} todayscoredata={this.state.userInformation.data.todayScore}/>
+                <Objectives sessiondata={this.state.userAvarage} />
+                <Radar sessiondata={this.state.userPerformance} />
+                <KPI
+                  scoredata={this.state.userInformation.data.score}
+                  todayscoredata={this.state.userInformation.data.todayScore}
+                />
               </div>
             </section>
             <section className="summary__right">
@@ -102,7 +164,9 @@ class Home extends React.Component {
               />
               <Nutrients
                 type="Glucides"
-                number={this.state.userInformation.data.keyData.carbohydrateCount}
+                number={
+                  this.state.userInformation.data.keyData.carbohydrateCount
+                }
                 unit="g"
                 svg_width="18"
                 svg_height="20"

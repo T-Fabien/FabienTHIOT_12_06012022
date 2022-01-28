@@ -1,4 +1,18 @@
 /**
+ * This function will see if the API is ONLINE
+ *
+ * @param {int} id - The id of the user
+ * @returns {boolean} - True = Online , False = Offline
+ */
+export const testAPI = async (id) => {
+  // Request
+  return fetch(`http://localhost:3000/user/${id}`)
+  .then(res=>res.json())
+  .then((res) => {return true} )
+  .catch(error=> {return false})
+};
+
+/**
  * This function will return a json with the global data
  * from a user with a id
  * @param {int} id - The id of the user
